@@ -10,6 +10,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/click", async (req, res) => {
+    console.log("incoming url:", req.baseUrl, req.originalUrl);
     const queries = req.query;
     // console.log(queries);
     let tail = queries.url ? (queries.url.includes("?") ? "" : "?") : "";
