@@ -25,7 +25,9 @@ app.get("/click", async (req, res) => {
     }
     // console.log(tail);
     if (queries.url) {
-        return res.redirect(queries.url + tail);
+        const redirectUrl = queries.url + tail;
+        console.log("redirect to:", redirectUrl);
+        return res.redirect(redirectUrl);
     }
 
     return res.render("cloak");
