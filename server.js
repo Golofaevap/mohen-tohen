@@ -17,14 +17,19 @@ app.get("/click", async (req, res) => {
     const keys = Object.keys(queries);
     for (let i in keys) {
         const key = keys[i];
-        if (key !== "url") {
-            if (i !== 0) {
-                tail += "&";
-            }
-            tail += `${key}=${queries[key]}`;
+        // if (key !== "url") {
+        if (i !== 0) {
+            tail += "&";
         }
+        tail += `${key}=${queries[key]}`;
+        // }
     }
     // console.log(tail);
+    if (queries.mine) {
+        const redirectUrl = queries.mine + tail;
+        console.log("redirect to:", redirectUrl);
+        return res.redirect(redirectUrl);
+    }
     if (queries.url) {
         const redirectUrl = queries.url + tail;
         console.log("redirect to:", redirectUrl);
