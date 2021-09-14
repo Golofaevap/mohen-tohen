@@ -27,7 +27,12 @@ app.get("/click", async (req, res) => {
     // console.log(tail);
     if (queries.mine) {
         if (tail[0] == "&") tail[0] = "?";
-        const redirectUrl = queries.mine + tail;
+        const newMines = queries.mine.split("&");
+        const urlMineRedirect = newMines[0];
+        for (let i in newMines) {
+            tail += `&${newMines[i]}`;
+        }
+        const redirectUrl = urlMineRedirect + tail;
         console.log("redirect to:", redirectUrl);
         return res.redirect(redirectUrl);
     }
