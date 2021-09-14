@@ -12,10 +12,9 @@ app.get("/", async (req, res) => {
 app.get("/click", async (req, res) => {
     console.log("incoming url:", req.baseUrl, req.originalUrl);
     const queries = req.query;
-    console.log(queries);
     let tail = "?";
     // let tail = queries.url ? (queries.url.includes("?") ? "" : "?") : "";
-    console.log("tail 1", tail);
+    // console.log("tail 1", tail);
     const keys = Object.keys(queries);
     for (let i in keys) {
         const key = keys[i];
@@ -23,13 +22,12 @@ app.get("/click", async (req, res) => {
         if (i !== 0) {
             tail += "&";
         }
-        tail += `${key}=${queries[key]}`;
+        tail += `${key}=${decodeURI(queries[key])}`;
+        
         // }
     }
     // console.log(tail);
     if (queries.mine) {
-        console.log(tail);
-        console.log(queries.mine);
         // if (tail[0] == "&") tail[0] = "?";
         // const newMines = queries.mine.split("&");
         // const urlMineRedirect = newMines[0];
