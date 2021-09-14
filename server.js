@@ -26,6 +26,7 @@ app.get("/click", async (req, res) => {
     }
     // console.log(tail);
     if (queries.mine) {
+        if (tail[0] == "&") tail[0] = "?";
         const redirectUrl = queries.mine + tail;
         console.log("redirect to:", redirectUrl);
         return res.redirect(redirectUrl);
