@@ -18,12 +18,14 @@ app.get("/click", async (req, res) => {
     const keys = Object.keys(queries);
     for (let i in keys) {
         const key = keys[i];
+        if (key == "mine") continue;
+        if (key == "url") continue;
         // if (key !== "url") {
         if (i !== 0) {
             tail += "&";
         }
         tail += `${key}=${decodeURI(queries[key])}`;
-        
+
         // }
     }
     // console.log(tail);
